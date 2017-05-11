@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,4 +38,48 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(Request $request)
+    {
+
+        if (Auth::user()->role == 'user') {
+            return redirect('/home');
+        }
+        if (Auth::user()->role == 'admin') {
+            $request->session()->flash('flash', 'Welcom Admin : ' . Auth::user()->name);
+            return redirect('/admin/home');
+        }
+
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $message = [
+            'username.required' => 'name or email required',
+            'username.max' => 'username not too long'
+        ];
+
+        $this->validate($request, [
+            'username' => 'required|string|max:255',
+            'password' => 'required|string',
+        ],$message);
+    }
+
+
+
+    protected function credentials(Request $request)
+    {
+        $username = 'name';
+        if (preg_match('/@/', $request->username)) {
+            $username = 'email';
+        }
+        return [$username => $request->username, 'password' => $request->password];
+    }
+
+
+    public function username()
+    {
+        return 'username';
+    }
+
 }

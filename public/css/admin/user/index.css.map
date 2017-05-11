@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.less","index.css"],"names":[],"mappings":"AAAA;EACE,mBAAA;CCCD","file":"index.css","sourcesContent":[".table-user{\r\n  overflow-x: scroll;\r\n}",".table-user {\n  overflow-x: scroll;\n}\n"],"sourceRoot":"/source/"}

@@ -1,0 +1,19 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+#page-wrapper .close-welcom {
+  top: 5px;
+  right: 10px;
+}
+#page-wrapper .close-welcom i {
+  font-size: 20px;
+}
+
+/*# sourceMappingURL=home.css.map */
