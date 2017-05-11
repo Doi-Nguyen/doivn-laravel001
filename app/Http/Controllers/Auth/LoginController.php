@@ -43,7 +43,7 @@ class LoginController extends Controller
     {
 
         if (Auth::user()->role == 'user') {
-            return redirect('/home');
+            return redirect('/frontend/home');
         }
         if (Auth::user()->role == 'admin') {
             $request->session()->flash('flash', 'Welcom Admin : ' . Auth::user()->name);

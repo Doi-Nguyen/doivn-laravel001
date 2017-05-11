@@ -26,6 +26,10 @@ Route::group(['prefix' => 'admin','middleware'=>'admin'], function () {
 
 Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('info', 'HomeController@infoUser');
-    Route::post('info', 'HomeController@updateUser');
+});
+
+Route::group(['prefix' => 'frontend','middleware'=>'auth'], function () {
+    Route::get('home', 'Frontend\HomeController@index');
+    Route::get('info', 'Frontend\HomeController@infoUser');
+    Route::post('info', 'Frontend\HomeController@updateUser');
 });

@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('css/app-custom.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -34,10 +35,31 @@
                         <span class="icon-bar"></span>
                     </button>
 
+                    <!-- Breadcrumbs -->
+                    {{--<ol class="breadcrumb">--}}
+                        {{--<li><a href="#">Home</a></li>--}}
+                        {{--<li><a href="#">Library</a></li>--}}
+                        {{--<li class="active">Data</li>--}}
+                    {{--</ol>--}}
+
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    @if(Auth::check())
+                        <a class="navbar-brand navbar-tab-left" href="{{ url('/frontend/home') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                        <a class="navbar-brand navbar-tab-left" href="{{ url('/') }}">
+                            Pages
+                        </a>
+                        <a class="navbar-brand navbar-tab-left" href="{{ url('/') }}">
+                            About
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @endif
+
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -60,7 +82,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{url('/home/info')}}">Edit User</a>
+                                        <a href="{{url('/frontend/info')}}">Edit User</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
